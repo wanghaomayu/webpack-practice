@@ -1,18 +1,17 @@
 import _ from 'lodash';
-import './style.css';
-import Icon from './cross.jpeg';
+import printMe from './print';
 
 function component (){
   var element = document.createElement('div');
+  var btn = document.createElement('button');
+
   element.innerHTML = _.join(['Hello', 'Webpack'], '  ');
   element.classList.add('hello');
 
-  // 将图像添加到我们现有的div
+  btn.innerHTML = 'CLick me';
+  btn.onclick = printMe;
 
-  var MyIcon = new Image();
-  MyIcon.src = Icon;
-  element.appendChild(MyIcon);
-
+  element.appendChild(btn);
   return element;
 }
 

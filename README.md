@@ -44,3 +44,19 @@
     
    **注意** ： 如果css中使用url: ('./my-img.jpg'),loader会识别这是个本地文件，并将该图片路径替换为 *输出目录* 的最终路径。然后html-loader同样以相同的方式处理<img src="./my-img.jpg" />
    
+* 输出文件中的filename："[name].bundle.js" 原因就是name代表entry里面的key
+
+    ```javascript
+      module.exports = {
+            entry: {
+              app: './src/index.js',
+              print: './src/print.js'
+            },
+            output: {
+              filename: "[name].bundle.js",
+              path: path.resolve(__dirname, 'dist')
+            }
+          };
+    
+    ```
+    
