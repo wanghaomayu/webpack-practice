@@ -3,29 +3,29 @@
 * es6模块导出(export)、导入(import)在不配置任何loader情况下，支持js模块导入
 * 执行npx webpack，会将我们的脚本src/index.js作为入口，并会生成dist/main.js,npx webpack执行的是node_modules/.bin/webpack
 * 为什么执行npx webpack就自动输出为 dist/main.js 文件中？
- > 因为webpack4 中可以无需任何配置，自动生成的main.js
+     > 因为webpack4 中可以无需任何配置，自动生成的main.js
  
 * 新增加的webpack.config只是前面webpack4自动打包的一种实现
 
 * 处理css样式的loader
 
- 1. 如下代码块就可以在组件中使用 import './style.css' 来像js一样将css样式当做模块在源码也就是开发中使用啦.
-
- 2. css-loader和style-loader必须同时使用，前者将css样式表转载成对象加进js code，后者将加进来的css包进<style></style>并放进head
-
-    ```javascript
+     1. 如下代码块就可以在组件中使用 import './style.css' 来像js一样将css样式当做模块在源码也就是开发中使用啦.
     
-       rules: [
-             {
-               test: /\.css$/,
-               use: [
-                 'style-loader',
-                 'css-loader'
+     2. css-loader和style-loader必须同时使用，前者将css样式表转载成对象加进js code，后者将加进来的css包进<style></style>并放进head
+    
+        ```javascript
+        
+           rules: [
+                 {
+                   test: /\.css$/,
+                   use: [
+                     'style-loader',
+                     'css-loader'
+                   ]
+                 }
                ]
-             }
-           ]
-      
-    ```
+          
+        ```
 
 * 引进file-loader，用于将各种资源如图片，像模块一样加载进来。
 
@@ -59,4 +59,17 @@
           };
     
     ```
-    
+  
+* 使用source map ，在module.exports 对象里面加devtool
+
+* webpack观察者模式虽然可以自动编译，但是需要手动刷新浏览器才可以
+
+   ```json
+      "scripts": {
+          "test": "echo \"Error: no test specified\" && exit 1",
+          "start": "webpack --config webpack.config.js",
+          "build": "webpack",
+          "watch": "wepack --watch"
+        },
+   ```
+* 使用webpack-dev-server，可以自动监控源码变动并自动刷新浏览器
