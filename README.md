@@ -6,18 +6,41 @@
  > 因为webpack4 中可以无需任何配置，自动生成的main.js
  
 * 新增加的webpack.config只是前面webpack4自动打包的一种实现
-* 如下代码块就可以在组件中使用 import './style.css' 来像js一样将css样式当做模块在源码也就是开发中使用啦
 
-```javascript
+* 处理css样式的loader
 
-   rules: [
-         {
-           test: /\.css$/,
-           use: [
-             'style-loader',
-             'css-loader'
+ 1. 如下代码块就可以在组件中使用 import './style.css' 来像js一样将css样式当做模块在源码也就是开发中使用啦.
+
+ 2. css-loader和style-loader必须同时使用，前者将css样式表转载成对象加进js code，后者将加进来的css包进<style></style>并放进head
+
+    ```javascript
+    
+       rules: [
+             {
+               test: /\.css$/,
+               use: [
+                 'style-loader',
+                 'css-loader'
+               ]
+             }
            ]
-         }
-       ]
-  
-```
+      
+    ```
+
+* 引进file-loader，用于将各种资源如图片，像模块一样加载进来。
+
+    ```javascript
+    
+      rules: [
+            {
+              test: /\.(png|jpg|jpeg|svg|gif)$/,
+              use: [
+                'file-loader'
+              ]
+            }
+          ]
+    
+    ```
+    
+   **注意** ： 如果css中使用url: ('./my-img.jpg'),loader会识别这是个本地文件，并将该图片路径替换为 *输出目录* 的最终路径。然后html-loader同样以相同的方式处理<img src="./my-img.jpg" />
+   
