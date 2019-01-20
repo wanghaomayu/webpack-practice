@@ -14,7 +14,6 @@ function component() {
   element.appendChild(btn);
   return element;
 }
-// ppp分支
 
 document.body.appendChild(component());
 
