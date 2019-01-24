@@ -72,4 +72,4 @@
           "watch": "wepack --watch"
         },
    ```
-* 使用webpack-dev-server，可以自动监控源码变动并自动刷新浏览器
+* 使用webpack-dev-server，可以自动监控源码变动并自动刷新浏览器, 另外start命令 "webpack-dev-server --open" 是通过CLI形式表示用webpackk-dev-server起服务之后自动打开浏览器。
