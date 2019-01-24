@@ -2,6 +2,10 @@ import _ from 'lodash';
 import printMe from './print';
 import './style.css';
 
+if(process.env.NODE_ENV !== 'production') {
+  console.log('mode=development');
+}
+
 function component() {
   var element = document.createElement('div');
   element.innerHTML = _.join(['啥','玩','意'], '-');

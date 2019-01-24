@@ -73,3 +73,14 @@
         },
    ```
 * 使用webpack-dev-server，可以自动监控源码变动并自动刷新浏览器, 另外start命令 "webpack-dev-server --open" 是通过CLI形式表示用webpackk-dev-server起服务之后自动打开浏览器。
+* 生产环境也推荐使用source-map，为了调试源码和运行基准测试。[各种source-map区别]("https://juejin.im/post/58293502a0bb9f005767ba2f")
+
+* webpack.DefinePlugin({})：
+
+  1. 有些逻辑可能需要判断比如process.env.NODE_ENV这样的值，但是其是node的api，在浏览器环境下没有该api，为了可是使用，可以在
+     webpack.prod.js里面define强制define出来
+     
+* 可以使用CLI但是不建议，可读性不强。
+
+  1. 脚本里面 --optimize-minimize 标记将在后台引用 UglifyJSPlugin
+  2. --define process.env.NODE_ENV="'production'" 可替代DefinePlugin操作
